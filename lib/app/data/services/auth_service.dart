@@ -14,7 +14,21 @@ class AuthService extends GetxService {
   Dio client = Dio(BaseOptions(
     baseUrl: Constants.baseUrl,));
 
-    
+    Future<bool> auth(String mail,String password,String path) async{
+      try{
+        var response =await client.post(path, data:{
+          "email":mail,
+        "password":password,
+        } );
+        var tokens =JWTModel.fromJson(response.data);
+        updateTokens(tokens
+      );
+      if(response.statusCode==200) return true;      
+    } catch (e) {
+      print(e);
+      }
+      return false;
+    }
    bool isAuth = false;
   Future<bool> registration(String mail, String password) async {
     try {
