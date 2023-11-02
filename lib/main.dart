@@ -7,21 +7,22 @@ import 'package:newkt8/app/data/services/storage_service.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
-  initServices();
+void main() async {
+  await initServices();
   runApp(
     GetMaterialApp(
       title: "Application",
       initialRoute: AppPages.INITIAL,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.from(colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)),
+      theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)),
       getPages: AppPages.routes,
     ),
   );
 }
 
-void initServices() async {
-  await Get.putAsync(()=>StorageService().init());
+Future<void> initServices() async {
+  await Get.putAsync(() => StorageService().init());
   await Get.putAsync(() => ApiService().init());
-  await Get.putAsync(()=>AuthService().init());
+  await Get.putAsync(() => AuthService().init());
 }

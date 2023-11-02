@@ -4,17 +4,15 @@ import 'package:newkt8/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   AuthService authService = Get.find();
-  
-    @override
-   void onReady() async {
+
+  @override
+  void onReady() async {
+    super.onReady();
     await authService.tryAuth();
     if (authService.isAuth) {
       Get.offNamed(Routes.HOME);
-    }
-    else {
+    } else {
       Get.offNamed(Routes.SIGNIN);
     }
-    super.onReady();
   }
-
 }
