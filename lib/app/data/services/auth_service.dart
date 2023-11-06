@@ -14,9 +14,9 @@ class AuthService extends GetxService {
   Dio client = Dio(BaseOptions(
     baseUrl: Constants.baseUrl,));
 
-    Future<bool> auth(String mail,String password,String path) async{
+    Future<bool> login(String mail,String password,String path) async{
       try{
-        var response =await client.post(path, data:{
+        var response =await client.post(ApiEndpoints.login, data:{
           "email":mail,
         "password":password,
         } );
