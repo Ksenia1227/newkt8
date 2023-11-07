@@ -15,7 +15,7 @@ void main() async {
       initialRoute: AppPages.INITIAL,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)),
+          colorScheme: ColorScheme.fromSwatch(backgroundColor: Colors.white)),
       getPages: AppPages.routes,
     ),
   );

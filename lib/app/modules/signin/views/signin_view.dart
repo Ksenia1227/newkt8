@@ -18,7 +18,6 @@ class SigninView extends GetView<SigninController> {
             height: 500,
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.grey,
                 width: 0.6,
               ),
               borderRadius: BorderRadius.circular(8.0),
@@ -77,7 +76,7 @@ class SigninView extends GetView<SigninController> {
                           enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
                                   width: 0.4,
-                                  color: Color.fromARGB(255, 85, 90, 95))),
+                                  )),
                           hintText: 'email',
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 20)),
@@ -108,7 +107,7 @@ class SigninView extends GetView<SigninController> {
                     )),
                 Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 42, vertical: 10),
+                        horizontal: 20, vertical: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -128,9 +127,9 @@ class SigninView extends GetView<SigninController> {
                       )),
                         Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 70, vertical: 10),
+                        horizontal: 5, vertical: 10),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                       style: const ButtonStyle(
@@ -138,13 +137,11 @@ class SigninView extends GetView<SigninController> {
                             RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(3)))),
-                        backgroundColor: MaterialStatePropertyAll<Color>(
-                            Color.fromRGBO(116, 152, 231, 1)),
                       ),
                       onPressed: () =>controller.toSignUp(),
                       child: const Text(
                         "Зарегистрироваться",
-                        style: TextStyle(fontSize: 16,color: Colors.black),
+                        style: TextStyle(fontSize: 14,color: Colors.black),
                       )),
                ] ))
               ]

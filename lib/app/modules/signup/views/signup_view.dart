@@ -164,6 +164,7 @@ class SignupView extends GetView<SignupController> {
                 height: 70.25,
                 width: 360,
                 child: TextField(
+                  controller: controller.mailController,
                   decoration: InputDecoration(
                       enabled: true,
                       border: OutlineInputBorder(
@@ -185,6 +186,7 @@ class SignupView extends GetView<SignupController> {
                 height: 70.25,
                 width: 360,
                 child: TextField(
+                  controller: controller.passController,
                   decoration: InputDecoration(
                       enabled: true,
                       border: OutlineInputBorder(
@@ -203,6 +205,7 @@ class SignupView extends GetView<SignupController> {
                 height: 70.25,
                 width: 360,
                 child: TextField(
+                  controller: controller.passRepController,
                   decoration: InputDecoration(
                       enabled: true,
                       border: OutlineInputBorder(
@@ -222,7 +225,7 @@ class SignupView extends GetView<SignupController> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  ElevatedButton(
+                  TextButton(
                       style: const ButtonStyle(
                         shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
