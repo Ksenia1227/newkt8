@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newkt8/app/data/models/jwtTokens/jwt.dart';
 import 'package:newkt8/app/data/services/api_service.dart';
@@ -14,9 +15,24 @@ class AuthService extends GetxService {
   Dio client = Dio(BaseOptions(
     baseUrl: Constants.baseUrl,));
 
-    Future<bool> login(String mail,String password,String path) async{
+    Future<bool> refresh() async {
       try{
-        var response =await client.post(ApiEndpoints.login, data:{
+    var res = await client.post(ApiEndpoints.refresh, data:_tokens.toJson());
+    var tokens= JWTModel.fromJson(res.data);
+    updateTokens(tokens);
+    if(res.statusCode==200) return true;
+      }catch(e){
+        print(e);
+      }
+      return false;
+    }
+
+  Future<bool> login (String mail,String password) async => _auth(mail,password,ApiEndpoints.login);
+  Future<bool> registration(String mail,String password) async => _auth (mail,password, ApiEndpoints.registration);
+
+    Future<bool> _auth(String mail,String password,String path) async{
+      try{
+        var response =await client.post(path, data:{
           "email":mail,
         "password":password,
         } );
@@ -30,22 +46,6 @@ class AuthService extends GetxService {
       return false;
     }
    bool isAuth = false;
-  Future<bool> registration(String mail, String password) async {
-    try {
-      var response =await client.post(ApiEndpoints.registration,data: {
-        "email":mail,
-        "password":password,
-      });
-      var tokens =JWTModel.fromJson(response.data);
-      updateTokens(tokens
-      );
-      print(tokens);
-      if(response.statusCode==200) return true;      
-    } catch (e) {
-      print(e);
-    }
-    return false;
-  }
 
   void updateTokens(JWTModel tokens){
   _tokens=tokens;
@@ -56,12 +56,15 @@ class AuthService extends GetxService {
 
     String refreshToken = storageService.getRefreshToken();
     print(refreshToken);
-    _tokens=JWTModel(accessToken: null, refreshToken: refreshToken);
+    var tokens=JWTModel(accessToken: null, refreshToken: refreshToken);
+    updateTokens(tokens);
+    print(_tokens);
     if (_tokens.refreshToken.isEmpty) {
       isAuth = false;
     }
     else {
       bool refreshResult = await apiService.updateTokens();
+      print(refreshResult);
       isAuth = refreshResult;
     }
     

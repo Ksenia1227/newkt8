@@ -4,6 +4,11 @@ import 'package:hive_flutter/adapters.dart';
 
 class StorageService extends GetxService {
   late Box box;
+   
+   void clear() async {
+    await box.clear();
+   }
+
   String getRefreshToken()  {
     return _readData('refresh') ??"";
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:newkt8/app/routes/app_pages.dart';
 
 import '../controllers/signin_controller.dart';
 
@@ -70,6 +69,7 @@ class SigninView extends GetView<SigninController> {
                     height: 70.25,
                     width: 360,
                     child: TextField(
+                      controller: controller.mailController,
                       decoration: InputDecoration(
                           enabled: true,
                           border: OutlineInputBorder(
@@ -91,6 +91,7 @@ class SigninView extends GetView<SigninController> {
                     height: 70.25,
                     width: 360,
                     child: TextField(
+                      controller: controller.passController,
                       decoration: InputDecoration(
                           enabled: true,
                           border: OutlineInputBorder(
@@ -120,7 +121,7 @@ class SigninView extends GetView<SigninController> {
                         backgroundColor: MaterialStatePropertyAll<Color>(
                             Color.fromRGBO(116, 152, 231, 1)),
                       ),
-                      onPressed: () {},
+                      onPressed: () => controller.signIn(),
                       child: const Text(
                         "Войти",
                         style: TextStyle(fontSize: 16,color: Colors.black),
@@ -131,7 +132,7 @@ class SigninView extends GetView<SigninController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        ElevatedButton(
+                        TextButton(
                       style: const ButtonStyle(
                         shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
@@ -140,7 +141,7 @@ class SigninView extends GetView<SigninController> {
                         backgroundColor: MaterialStatePropertyAll<Color>(
                             Color.fromRGBO(116, 152, 231, 1)),
                       ),
-                      onPressed: () =>Get.toNamed(Routes.SIGNUP),
+                      onPressed: () =>controller.toSignUp(),
                       child: const Text(
                         "Зарегистрироваться",
                         style: TextStyle(fontSize: 16,color: Colors.black),

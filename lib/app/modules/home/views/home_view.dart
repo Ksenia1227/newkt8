@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:newkt8/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -14,7 +13,7 @@ class HomeView extends GetView<HomeController> {
         title: const Text('Главная страница'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () => Get.offNamed(Routes.SIGNIN), icon: const Icon(Icons.account_circle))
+          IconButton(onPressed: () => controller.logout(), icon: const Icon(Icons.logout))
         ],
       ),
       body: const Center(

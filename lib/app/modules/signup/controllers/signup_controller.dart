@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newkt8/app/data/services/auth_service.dart';
 import 'package:newkt8/app/routes/app_pages.dart';
+// import 'package:newkt8/core/constants.dart';
 
 class SignupController extends GetxController {
   AuthService authService = Get.find();
@@ -20,6 +21,8 @@ class SignupController extends GetxController {
     if (passController.text != passRepController.text) {
       showSnack("Пароли не совпадают!");
     }
+
+    
     bool res= await authService.registration(mailController.text, passController.text);
     if(res){
       authService.isAuth = true;
@@ -32,8 +35,8 @@ class SignupController extends GetxController {
   }
   
 
-  void tryRegister(String mail, String password) =>
-      authService.registration(mail, password);
+  //  void tryRegister(String mail, String password) =>
+      //  authService.auth(mail, password, ApiEndpoints.registration);
 
   void showSnack(
     String message,{isError=true}
