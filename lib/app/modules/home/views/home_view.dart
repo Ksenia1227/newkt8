@@ -16,14 +16,15 @@ class HomeView extends GetView<HomeController> {
           IconButton(onPressed: () => controller.logout(), icon: const Icon(Icons.logout))
         ],
       ),
-      body: const Center(
-        child: Column(
+      body:  Center(
+        child:  Column (
           children: [
-          SizedBox(height: 24,),
+          SizedBox(height: 24,), 
+          Obx(() => 
           Text(
-            'Главная страница',
+            controller.welcometext.value,
             style: TextStyle(fontSize: 23),
-          ),
+          ),)
           ],
         ),
         )

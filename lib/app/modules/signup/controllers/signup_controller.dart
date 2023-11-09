@@ -6,45 +6,42 @@ import 'package:newkt8/app/routes/app_pages.dart';
 
 class SignupController extends GetxController {
   AuthService authService = Get.find();
-   void toLogin() => Get.toNamed(Routes.SIGNIN);
   var mailController = TextEditingController();
   var passController = TextEditingController();
   var passRepController = TextEditingController();
 
-  void signUp () async {
+  void signUp() async {
     if (!mailController.text.contains("@")) {
       showSnack("Неправильно указанная почта");
+      return;
     }
     if (passRepController.text.length < 8) {
       showSnack("Длина пароля должна быть более 8 символов");
+      return;
     }
     if (passController.text != passRepController.text) {
       showSnack("Пароли не совпадают!");
+      return;
     }
 
-    
-    bool res= await authService.registration(mailController.text, passController.text);
-    if(res){
+    bool res = await authService.registration(
+        mailController.text, passController.text);
+    if (res) {
       authService.isAuth = true;
       Get.toNamed(Routes.HOME);
-      showSnack('Registration is successfull', isError:false);
-
-    }else{
+      showSnack('Registration is successfull', isError: false);
+    } else {
       showSnack('Registration failed');
     }
   }
-  
 
   //  void tryRegister(String mail, String password) =>
-      //  authService.auth(mail, password, ApiEndpoints.registration);
+  //  authService.auth(mail, password, ApiEndpoints.registration);
 
-  void showSnack(
-    String message,{isError=true}
-  ) {
-    Get.showSnackbar(
-    GetSnackBar(
+  void showSnack(String message, {isError = true}) {
+    Get.showSnackbar(GetSnackBar(
       message: message,
-      backgroundColor: isError? Colors.red:Colors.green,
+      backgroundColor: isError ? Colors.red : Colors.green,
       duration: const Duration(seconds: 1),
     ));
   }

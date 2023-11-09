@@ -24,6 +24,6 @@ class SigninController extends GetxController {
   }
 
   toSignUp() {
-    void toRegistration() => Get.toNamed(Routes.SIGNUP);
+    Get.toNamed(Routes.SIGNUP);
   }
 }

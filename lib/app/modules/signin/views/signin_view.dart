@@ -132,13 +132,7 @@ class SigninView extends GetView<SigninController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
-                      style: const ButtonStyle(
-                        shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(3)))),
-                      ),
-                      onPressed: () =>controller.toSignUp(),
+                          onPressed: () =>controller.toSignUp(),
                       child: const Text(
                         "Зарегистрироваться",
                         style: TextStyle(fontSize: 14,color: Colors.black),
@@ -146,7 +140,6 @@ class SigninView extends GetView<SigninController> {
                ] ))
               ]
         ))])))
-      ]),
-     ));
+      ])));
   }
 }
